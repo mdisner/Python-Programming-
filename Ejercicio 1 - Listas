@@ -1,0 +1,67 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#UNAM-CERT
+
+list = []
+
+aprobados = []
+
+
+def aprueba_becario(nombre_completo):
+    nombre_separado = nombre_completo.split()
+    for n in nombre_separado:
+        if n in ['Gerardo', 'Alan', 'Guadalupe', 'Rafael', 'Karina']:
+              
+              return False
+    aprobados.append(nombre_separado)
+    return True
+
+
+becarios = ['Becerra Alvarado Hugo Alonso',
+            'Cabrera Balderas Carlos Eduardo',
+            'Corona Lopez GeRARdo',
+            'Diez Gutierrez Gonzalez rafael',
+            'Disner Lopez Marco Antonio',
+            'Garcia Romo Claudia Fernanda',
+            'Gonzalez Ramirez Miguel Angel',
+            'Gonzalez Vargas Andrea Itzel',
+            'Orozco Avalos Aline kaRIna',
+            'Palacio Nieto Esteban',
+            'Reyes Aldeco Jairo ALAN',
+            'Santiago Mancera Arturo Samuel',
+            'Sarmiento Campos Jose',
+            'Sarmiento Campos Maria gUADALUPE',
+            'Valle Juarez Pedro Angel',
+            'Viveros Campos Ulises']
+
+nuevo = raw_input("Dame apellido y nombre del nuevo becario: ")
+     
+def agrega_becario(nuevo):
+         mayus = nuevo.upper()
+         becarios.append(mayus)
+         becarios.sort(key=lambda s: s.split(" ")[0].upper())
+         
+agrega_becario(nuevo)
+
+quitar = raw_input("Dame el nombre del Becario que se eliminará: ")
+
+def quita_becario(quitar):
+    
+      if str(quitar) in becarios:
+       becarios.remove(quitar)
+       print "True"
+      else:
+       print "False"
+
+quita_becario(quitar)
+
+
+for b in becarios:
+    a = b.title()  
+    if aprueba_becario(a):
+        print 'APROBADOO: ' + a.upper()
+    else:
+        print 'REPROBADO: ' + a.upper()
+
+
+#print becarios
