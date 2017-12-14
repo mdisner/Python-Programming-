@@ -15,16 +15,35 @@ def minusculas():
  global minus
  minus = ''.join(random.sample(lista1, min))
 
+ """
+ Esta funcion recibe un numero entero (min) y selecciona aleatoriamente min cantidad de elementos de la lista1, por ultimo
+ une en una cadena los caracteres.
+ """
+ 
+ 
 def mayusculas():
  may = input("Cuantas mayusculas contendra tu contrasena: ")
  global mayus
  mayus = ''.join(random.sample(lista2, may))
 
+ """
+ Esta funcion recibe un numero entero (may) y selecciona aleatoriamente may cantidad de elementos de la lista2, por ultimo
+ une en una cadena los caracteres.
+ """ 
+ 
+ 
+ 
 
 def numeros():
  num = input("Cuantos digitos contendra tu contrasena: ")
  global nume
  nume = ''.join(random.sample(lista3, num))
+ 
+  """
+ Esta funcion recibe un numero entero (num) y selecciona aleatoriamente num cantidad de elementos de la lista3, por ultimo
+ une en una cadena los caracteres.
+ """
+
 
 def final():
   
@@ -32,4 +51,10 @@ def final():
   mayusculas()
   numeros()
   print minus+mayus+nume
+
+ """
+ Esta funcion simplemente concatena las cadenas generadas por las funciones anteriores para formar una contraseña segura
+ y con complejidad 3.
+ """  
+  
 final()
