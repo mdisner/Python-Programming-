@@ -3,7 +3,13 @@
 
 dicc = []
 raros = ["$#$", "$%", "&%$#", "&%/", "-.-", "..--//", "o/" ]
+"""
+Este programa importa un archivo de texto llamado palabras con open, el cual contiene los gustos, nombre, hobbies, de la posible
+victima, para cada linea de ese archivo agrega caracteres especiales, numeros y reescribe todo al reves, de modo que genera
+aproximadamente entre 20 y 40 millones de posibles contraseñas diferentes para realizar una ataque, estas posibles contraseñas
+son agregadas a un archivo llamado eldiccionario.txt
 
+"""
 with open ('palabras') as inputfile:
   
       for line in inputfile:
@@ -44,12 +50,7 @@ with open ('palabras') as inputfile:
 
                   f.close()                   
 
-                
-
-
-
-
-
+               
 
 
 
